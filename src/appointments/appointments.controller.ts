@@ -4,13 +4,14 @@ import { CreateAppointmentDto } from './dto/create-appointment.dto';
 import { UpdateAppointmentDto } from './dto/update-appointment.dto';
 import { FilterAppointmentsDto } from './dto/filter-appointements.dto';
 import { Appointment } from './entities/appointment.entity';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/auth.guard';
 import { PatientRoleGuard } from 'src/auth/guards/patient-role.guard';
 
 @ApiTags('appointments')
 @UseGuards(JwtAuthGuard)
 @UseGuards(PatientRoleGuard)
+@ApiBearerAuth() 
 @Controller('appointments')
 export class AppointmentsController {
   constructor(private readonly appointmentsService: AppointmentsService) {}

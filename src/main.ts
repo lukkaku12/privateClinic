@@ -15,6 +15,7 @@ async function bootstrap() {
     .setDescription('Employment Assesment!')
     .setVersion('1.0')
     .addTag('striving but aint failing')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, doc);

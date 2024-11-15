@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { AvailabilityService } from './availability.service';
 import { CreateAvailabilityDto } from './dto/create-availability.dto';
 import { UpdateAvailabilityDto } from './dto/update-availability.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/auth.guard';
 import { DoctorRoleGuard } from 'src/auth/guards/doctor-role.guard';
 
@@ -10,6 +10,7 @@ import { DoctorRoleGuard } from 'src/auth/guards/doctor-role.guard';
 @ApiTags('availability')
 @UseGuards(JwtAuthGuard)
 @UseGuards(DoctorRoleGuard)
+@ApiBearerAuth() 
 @Controller('availability')
 export class AvailabilityController {
   constructor(private readonly availabilityService: AvailabilityService) {}
