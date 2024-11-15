@@ -8,8 +8,8 @@ import { PassportModule } from '@nestjs/passport';
 
 import { JwtStrategy } from './strategies/jwt.strategey'; 
 import { UsersService } from 'src/users/users.service';
-import User from 'src/users/entities/user.entity';
 import { LocalStrategy } from './strategies/local.strategy';
+import { User } from 'src/users/entities/user.entity';
 
 @Module({
   imports: [

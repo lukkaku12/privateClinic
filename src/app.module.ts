@@ -3,6 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { AppointmentsModule } from './appointments/appointments.module';
+import { AvailabilityModule } from './availability/availability.module';
 
 @Module({
   imports: [ConfigModule.forRoot({isGlobal: true}), 
@@ -22,7 +24,7 @@ import { UsersModule } from './users/users.module';
         rejectUnauthorized: false
       }
     }),
-  }), AuthModule, UsersModule ],
+  }), AuthModule, UsersModule, AppointmentsModule, AvailabilityModule ],
   controllers: [],
   providers: [],
 })
