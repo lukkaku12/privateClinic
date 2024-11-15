@@ -12,11 +12,11 @@ export class CreateAvailabilityDto {
 
   @IsNotEmpty()
   @IsString()
-  start_time: string;
+  start_Time: string;
 
   @IsNotEmpty()
   @IsString()
-  end_time: string;
+  end_Time: string;
 
   @IsBoolean()
   is_available: boolean;

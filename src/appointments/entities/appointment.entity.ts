@@ -17,15 +17,15 @@ import {
     @PrimaryGeneratedColumn()
     appointmentId: number;
   
-    @ManyToOne(() => User, user => user.appointmentsAsPatient)
+    @ManyToOne(() => User, user => user.appointmentsAsPatient, {nullable: false})
     @JoinColumn({ name: 'patient_id' })
     patient: User;
   
-    @ManyToOne(() => User, user => user.appointmentsAsDoctor)
+    @ManyToOne(() => User, user => user.appointmentsAsDoctor, {nullable: false})
     @JoinColumn({ name: 'doctor_id' })
     doctor: User;
   
-    @OneToOne(() => Availability)
+    @OneToOne(() => Availability, {nullable: false})
     @JoinColumn({ name: 'availability_id' })
     availability: Availability;
   

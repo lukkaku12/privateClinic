@@ -1,8 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
 import { AppointmentsService } from './appointments.service';
 import { CreateAppointmentDto } from './dto/create-appointment.dto';
 import { UpdateAppointmentDto } from './dto/update-appointment.dto';
+import { FilterAppointmentsDto } from './dto/filter-appointements.dto';
+import { Appointment } from './entities/appointment.entity';
+import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/guards/auth.guard';
+import { PatientRoleGuard } from 'src/auth/guards/patient-role.guard';
 
+@ApiTags('appointments')
+@UseGuards(JwtAuthGuard)
+@UseGuards(PatientRoleGuard)
 @Controller('appointments')
 export class AppointmentsController {
   constructor(private readonly appointmentsService: AppointmentsService) {}
@@ -13,8 +21,8 @@ export class AppointmentsController {
   }
 
   @Get()
-  findAll() {
-    return this.appointmentsService.findAll();
+  async findAll(@Query() filters: FilterAppointmentsDto): Promise<Appointment[]> {
+    return this.appointmentsService.findAll(filters);
   }
 
   @Get(':id')

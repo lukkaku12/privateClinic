@@ -1,18 +1,17 @@
-// create-appointment.dto.ts
-import { IsNotEmpty, IsString, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsString, IsOptional, IsInt } from 'class-validator';
 
 export class CreateAppointmentDto {
   @IsNotEmpty()
-  @IsString()
-  patientId: string;
+  @IsInt()
+  patientId: number;
 
   @IsNotEmpty()
-  @IsString()
-  doctorId: string;
+  @IsInt()
+  doctorId: number;
 
   @IsNotEmpty()
-  @IsString()
-  availabilityId: string;
+  @IsInt()
+  availability_id: number;
 
   @IsNotEmpty()
   @IsString()
@@ -22,4 +21,3 @@ export class CreateAppointmentDto {
   @IsString()
   notes?: string;
 }
-

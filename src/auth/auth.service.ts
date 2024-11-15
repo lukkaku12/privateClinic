@@ -9,32 +9,32 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 export class AuthService {
 
   constructor(
-    private readonly playerService: UsersService,
+    private readonly userService: UsersService,
     private readonly jwtService: JwtService
   ) {
   }
 
   async validateUser(email: string, password: string): Promise<any> {
-    const player = await this.playerService.findByEmail(email); 
+    const user = await this.userService.findByEmail(email); 
     
     
-    if (!player) {
+    if (!user) {
       return null;
     }
 
    
-    const isPasswordValid = await bcrypt.compare(password, player.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return null;
     }
 
     
-    const { password: _password, ...result } = player;
+    const { password: _password, ...result } = user;
     return result;
   }
 
-  async login(player: any) {
-    const payload = { username: player.email, sub: player.id };
+  async login(user: any) {
+    const payload = { username: user.email, sub: user.id, role: user.role};
     return {
       access_token: this.jwtService.sign(payload, {expiresIn: '1y'}), 
     };
