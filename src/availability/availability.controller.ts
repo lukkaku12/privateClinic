@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { AvailabilityService } from './availability.service';
 import { CreateAvailabilityDto } from './dto/create-availability.dto';
 import { UpdateAvailabilityDto } from './dto/update-availability.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/auth.guard';
 import { DoctorRoleGuard } from 'src/auth/guards/doctor-role.guard';
 
@@ -16,6 +16,20 @@ export class AvailabilityController {
   constructor(private readonly availabilityService: AvailabilityService) {}
 
   @Post()
+  @ApiBody({
+    description: 'data needed to create a free schedule for the doctor',
+    schema: {
+      example: {
+        
+          doctorId: 2,
+          date: "2024-11-20",
+          start_Time: "09:00",
+          end_Time: "12:00",
+          is_available: true
+      
+      },
+    },
+  })
   create(@Body() createAvailabilityDto: CreateAvailabilityDto) {
     return this.availabilityService.create(createAvailabilityDto);
   }
