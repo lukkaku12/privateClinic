@@ -30,7 +30,7 @@ export class AvailabilityService {
     const appointmentDate = new Date(`${date}T00:00:00Z`);
     const today = new Date();
     if (appointmentDate < today) {
-      throw new BadRequestException('the Date should be prior to the actual one.');
+      throw new BadRequestException('The Date should be prior to the current one.');
     }
 
     
@@ -38,17 +38,17 @@ export class AvailabilityService {
     const endTime = new Date(`1970-01-01T${end_Time}:00Z`).getTime();
 
     if (startTime >= endTime) {
-      throw new BadRequestException('La hora de inicio debe ser anterior a la hora de finalización.');
+      throw new BadRequestException('Start time must be before end time.');
     }
 
     const existingAvailability = await this.availabilityRepository.findOne({where: {
-      doctor,  // Comparación por el doctor
-      start_time: MoreThanOrEqual(start_Time),  // Comparar si el start_time en la DB es mayor o igual a startTime
+      doctor,  // Compare by doctor
+      start_time: MoreThanOrEqual(start_Time),  // Compare if start_time in the DB is greater or equal to startTime
       end_time: LessThanOrEqual(end_Time),
     }})
 
     if (existingAvailability) {
-      throw new BadRequestException('El doctor ya tiene una cita en esa fecha y horario.');
+      throw new BadRequestException('The doctor already has an appointment at this date and time.');
     }
 
     const availability = this.availabilityRepository.create({
@@ -71,7 +71,7 @@ export class AvailabilityService {
   async findOne(id: number): Promise<Availability> {
     const availability = await this.availabilityRepository.findOne({where:{availabilityId: id}});
     if (!availability) {
-      throw new NotFoundException(`Disponibilidad con ID ${id} no encontrada.`);
+      throw new NotFoundException(`Availability with ID ${id} not found.`);
     }
     return availability;
   }
@@ -80,7 +80,7 @@ export class AvailabilityService {
   async update(id: number, updateAvailabilityDto: UpdateAvailabilityDto): Promise<Availability> {
     const availability = await this.availabilityRepository.findOne({where:{availabilityId: id}});
     if (!availability) {
-      throw new NotFoundException(`Disponibilidad con ID ${id} no encontrada.`);
+      throw new NotFoundException(`Availability with ID ${id} not found.`);
     }
     
     
@@ -92,7 +92,7 @@ export class AvailabilityService {
   async remove(id: number): Promise<void> {
     const availability = await this.availabilityRepository.findOne({where:{availabilityId: id}});
     if (!availability) {
-      throw new NotFoundException(`Disponibilidad con ID ${id} no encontrada.`);
+      throw new NotFoundException(`Availability with ID ${id} not found.`);
     }
     
     await this.availabilityRepository.remove(availability);

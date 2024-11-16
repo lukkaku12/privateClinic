@@ -34,7 +34,7 @@ export class AppointmentsService {
     });
     if (!patient) {
       throw new NotFoundException(
-        `Paciente con ID ${patientId} no encontrado.`,
+        `Patient with ID ${patientId} not found.`,
       );
     }
 
@@ -42,7 +42,7 @@ export class AppointmentsService {
       where: { userId: doctorId },
     });
     if (!doctor) {
-      throw new NotFoundException(`Doctor con ID ${doctorId} no encontrado.`);
+      throw new NotFoundException(`Doctor with ID ${doctorId} not found.`);
     }
     console.log(availability_id)
 
@@ -51,18 +51,18 @@ export class AppointmentsService {
     });
     if (!availability) {
       throw new NotFoundException(
-        `Disponibilidad con ID ${availability_id} no encontrada.`,
+        `Availability with ID ${availability_id} not found.`,
       );
     }
     if (!availability.is_available) {
       throw new BadRequestException(
-        `La disponibilidad con ID ${availability_id} no está disponible.`,
+        `Availability with ID ${availability_id} is not available.`,
       );
     }
 
     if (!reason || reason.trim().length < 5) {
       throw new BadRequestException(
-        'La razón de la cita debe ser válida y tener al menos 5 caracteres.',
+        'The reason for the appointment must be valid and have at least 5 characters.',
       );
     }
 
