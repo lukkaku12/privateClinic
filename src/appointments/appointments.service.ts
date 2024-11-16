@@ -124,6 +124,14 @@ export class AppointmentsService {
     return appointment;
   }
 
+  async findUserAppointments(patientId: number) {
+    const appointments = await this.appointmentRepository.find({
+      where: { patient: { userId: patientId } },
+      relations: ['doctor', 'patient', 'availability'], // Include related entities
+    });
+    return appointments;
+  }
+
   async update(
     id: number,
     updateAppointmentDto: UpdateAppointmentDto,
