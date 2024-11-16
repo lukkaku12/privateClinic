@@ -98,3 +98,7 @@ This project is licensed under the MIT License.
 ![Usage Case Diagram](http://www.plantuml.com/plantuml/dpng/XP9DJiCm48NtFiMZAofHZe2Ae6ABXDJzr9wc8_cdiXqak0rduMAuReBIf4fNSMQ-cNcUvtNA57FhhBhB1tOCSjAG8fr3nEATjB3Fl00bz3zzyZMSlZLrFYhL8rWzuNxB4KRICNZPYHL31ePXAiffUGb_i6Mj9NYA7O8l74AaA664lWI_b-WAg2NJKjqQX5LNbLgRQOAonuuIrnBAeGYR5uDLTxa-aluxMYxL8tqT_zPID5seD2ETMxBoFP6pLCg7p8ZI73B2VdfTO6EH96LsX4-EiXTD9G2slI9mohy_0raAPMPfKK1BumNeu09y6E2FYht1IOTIPslhuZSfKybgdeWUKbi-AqqmZ6DdNBf0DgRahrCpGouNUTl5wqB6p-6wYh72SVdpm3_EP2rNp58jcPWuqw_wsR-oOyibIRFD7wfX2j3aTb8OIzLt150JkQ5uSexImCHrERNE_W40)
 
 ![architecture Diagram](architecture-diagram.jpg)
+
+## Deployment
+
+check the deployment of the API [here](http://159.223.175.64:3002/docs)
